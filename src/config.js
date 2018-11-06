@@ -1,5 +1,6 @@
 export const routes = [
   {
+    id: "1",
     isActive: false,
     isFavourite: false,
     title: "London - Paris",
@@ -9,6 +10,7 @@ export const routes = [
     length: "10km"
   },
   {
+    id: "2",
     isActive: false,
     isFavourite: true,
     title: "Minsk - Kiev",
@@ -19,6 +21,7 @@ export const routes = [
     length: "6km"
   },
   {
+    id: "3",
     isActive: false,
     isFavourite: true,
     title: "Kiev - Lviv",
@@ -28,6 +31,7 @@ export const routes = [
     length: "16km"
   },
   {
+    id: "4",
     isActive: false,
     isFavourite: false,
     title: "New York - Irkutsk",
@@ -37,6 +41,7 @@ export const routes = [
     length: "12km"
   },
   {
+    id: "5",
     isActive: false,
     isFavourite: false,
     title: "Berlin-Warsaw",
@@ -46,6 +51,7 @@ export const routes = [
     length: "96km"
   },
   {
+    id: "6",
     isActive: false,
     isFavourite: true,
     title: "Istanbul - Dalaman",

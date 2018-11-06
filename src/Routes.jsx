@@ -3,9 +3,12 @@ import Route from "./Route";
 
 class Routes extends Component {
   render() {
+    let routes = this.props.routes;
     return (
-      <div className="pt-3">
-        <Route />
+      <div className="flex-grow-1" style={{ overflow: "scroll" }}>
+        {routes.map(route => {
+          return <Route key={route.id} route={route} />;
+        })}
       </div>
     );
   }

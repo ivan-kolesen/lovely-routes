@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <Fragment>
         <Header />
-        <Main />
+        <Main routes={this.state.routes} />
         <Popup />
       </Fragment>
     );

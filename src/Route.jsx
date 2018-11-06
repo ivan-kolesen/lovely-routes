@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class Route extends Component {
   render() {
     return (
-      <div className="row m-0 border border-dark rounded">
+      <div className="row m-0 border border-dark rounded mt-1">
         <div className="d-flex align-items-center justify-content-center col-lg-2 p-1">
           <svg width="40" height="40">
             <polygon
@@ -14,11 +14,11 @@ class Route extends Component {
           </svg>
         </div>
         <div className="col-lg-7 p-1">
-          <h2 className="h5 m-0 p-1">title</h2>
-          <p className="m-0 p-1">desc</p>
+          <h2 className="h5 m-0 p-1">{this.props.route.title}</h2>
+          <p className="m-0 p-1">{this.props.route.shortDesc}</p>
         </div>
         <div className="d-flex align-items-center justify-content-center col-lg-2 p-1">
-          1km
+          {this.props.route.length}
         </div>
         <div className="d-flex align-items-center justify-content-center col-lg-1 p-1">
           ->
