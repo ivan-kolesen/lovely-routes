@@ -36,9 +36,14 @@ class App extends Component {
     this.setState({ routes });
   };
 
-  handleAddPathBtn = () => this.setState({ isPopUpOpened: true });
+  handleAddRouteBtn = () => this.setState({ isPopUpOpened: true });
 
   handleCloseBtn = () => this.setState({ isPopUpOpened: false });
+
+  handleAddRoute = route => {
+    const routes = [...this.state.routes, route];
+    this.setState({ routes });
+  };
 
   render() {
     return (
@@ -47,7 +52,7 @@ class App extends Component {
           className="container bg-light d-flex flex-column"
           style={{ height: "100vh" }}
         >
-          <Header onAddPathBtn={this.handleAddPathBtn} />
+          <Header onAddRouteBtn={this.handleAddRouteBtn} />
           <Main
             routes={this.state.routes}
             inputValue={this.state.inputValue}
@@ -61,6 +66,7 @@ class App extends Component {
           <Popup
             isPopUpOpened={this.state.isPopUpOpened}
             onCloseBtn={this.handleCloseBtn}
+            onAddRoute={this.handleAddRoute}
           />
         ) : null}
       </Fragment>

@@ -10,7 +10,7 @@ class Header extends Component {
         <div className="col-lg-4 p-3 text-center">
           <button
             className="btn btn-sm btn-info pl-4 pr-4 m-2"
-            onClick={this.props.onAddPathBtn}
+            onClick={this.props.onAddRouteBtn}
           >
             Add Path
           </button>

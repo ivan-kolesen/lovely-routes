@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-import { routes } from "./config";
-
 const hash = require("object-hash");
 
 class Popup extends Component {
   state = {
+    id: "",
     isSelected: false,
     isFavourite: false,
-    length: "8km"
+    title: "",
+    shortDesc: "",
+    fullDesc: "",
+    length: "10km"
   };
 
   handleInputChange = event => {
@@ -23,12 +25,11 @@ class Popup extends Component {
   handleSubmit = () => {
     const id = hash(this.state);
 
-    this.setState({
-      id: id
+    this.setState(() => {
+      return { id: id };
     });
 
-    routes.push(this.state);
-
+    this.props.onAddRoute(this.state);
     this.props.onCloseBtn();
   };
 
