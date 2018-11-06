@@ -7,7 +7,13 @@ class Routes extends Component {
     return (
       <div className="flex-grow-1" style={{ overflow: "scroll" }}>
         {routes.map(route => {
-          return <Route key={route.id} route={route} />;
+          return (
+            <Route
+              key={route.id}
+              route={route}
+              onToggleIsFavorite={this.props.onToggleIsFavorite}
+            />
+          );
         })}
       </div>
     );

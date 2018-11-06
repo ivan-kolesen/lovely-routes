@@ -11,11 +11,21 @@ class App extends Component {
     routes: routes
   };
 
+  handleIsFavorite = route => {
+    const routes = [...this.state.routes];
+    const index = routes.indexOf(route);
+    routes[index].isFavourite = !routes[index].isFavourite;
+    this.setState(routes);
+  };
+
   render() {
     return (
       <Fragment>
         <Header />
-        <Main routes={this.state.routes} />
+        <Main
+          routes={this.state.routes}
+          onToggleIsFavorite={this.handleIsFavorite}
+        />
         <Popup />
       </Fragment>
     );

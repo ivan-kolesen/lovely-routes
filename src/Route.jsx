@@ -5,11 +5,18 @@ class Route extends Component {
     return (
       <div className="row m-0 border border-dark rounded mt-1">
         <div className="d-flex align-items-center justify-content-center col-lg-2 p-1">
-          <svg width="40" height="40">
+          <svg
+            width="40"
+            height="40"
+            onClick={() => {
+              this.props.onToggleIsFavorite(this.props.route);
+            }}
+          >
             <polygon
               points="20,2 8,39.6 38,15.6 2,15.6 32,39.6"
               stroke="black"
               strokeWidth="1"
+              fill={this.props.route.isFavourite ? "yellow" : "transparent"}
             />
           </svg>
         </div>
