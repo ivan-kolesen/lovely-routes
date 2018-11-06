@@ -11,6 +11,14 @@ class App extends Component {
     routes: routes
   };
 
+  handleIsSelected = route => {
+    const routes = [...this.state.routes];
+    const index = routes.indexOf(route);
+    routes.forEach(route => (route.isSelected = false));
+    routes[index].isSelected = true;
+    this.setState(routes);
+  };
+
   handleIsFavorite = route => {
     const routes = [...this.state.routes];
     const index = routes.indexOf(route);
@@ -29,8 +37,9 @@ class App extends Component {
         <Main
           routes={this.state.routes}
           inputValue={this.state.inputValue}
-          onToggleIsFavorite={this.handleIsFavorite}
           onInputChange={this.handleInputChange}
+          onToggleIsFavorite={this.handleIsFavorite}
+          onSelectRoute={this.handleIsSelected}
         />
         <Popup />
       </Fragment>

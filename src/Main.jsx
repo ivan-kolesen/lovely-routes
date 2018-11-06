@@ -16,6 +16,7 @@ class Main extends Component {
             routes={this.props.routes}
             inputValue={this.props.inputValue}
             onToggleIsFavorite={this.props.onToggleIsFavorite}
+            onSelectRoute={this.props.onSelectRoute}
           />
         </div>
         <Description />

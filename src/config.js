@@ -1,7 +1,7 @@
 export const routes = [
   {
     id: "1",
-    isActive: false,
+    isSelected: false,
     isFavourite: false,
     title: "London - Paris",
     shortDesc: "The way from London to Paris is under LaManche",
@@ -11,7 +11,7 @@ export const routes = [
   },
   {
     id: "2",
-    isActive: false,
+    isSelected: false,
     isFavourite: true,
     title: "Minsk - Kiev",
     shortDesc:
@@ -22,7 +22,7 @@ export const routes = [
   },
   {
     id: "3",
-    isActive: false,
+    isSelected: false,
     isFavourite: true,
     title: "Kiev - Lviv",
     shortDesc: "Takes about 5 hours, the road is good",
@@ -32,7 +32,7 @@ export const routes = [
   },
   {
     id: "4",
-    isActive: false,
+    isSelected: false,
     isFavourite: false,
     title: "New York - Irkutsk",
     shortDesc: "Better stay home",
@@ -42,7 +42,7 @@ export const routes = [
   },
   {
     id: "5",
-    isActive: false,
+    isSelected: false,
     isFavourite: false,
     title: "Berlin-Warsaw",
     shortDesc: "You'll get there very fast if you have a tank",
@@ -52,7 +52,7 @@ export const routes = [
   },
   {
     id: "6",
-    isActive: false,
+    isSelected: false,
     isFavourite: true,
     title: "Istanbul - Dalaman",
     shortDesc: "Turkish Airways ticket costs 25$",

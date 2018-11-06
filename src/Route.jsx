@@ -1,9 +1,20 @@
 import React, { Component } from "react";
 
 class Route extends Component {
+  getClassName = () => {
+    return `row m-0 border border-dark rounded mt-1 ${
+      this.props.route.isSelected ? "bg-info" : null
+    }`;
+  };
+
   render() {
     return (
-      <div className="row m-0 border border-dark rounded mt-1">
+      <div
+        className={this.getClassName()}
+        onClick={() => {
+          this.props.onSelectRoute(this.props.route);
+        }}
+      >
         <div className="d-flex align-items-center justify-content-center col-lg-2 p-1">
           <svg
             width="40"

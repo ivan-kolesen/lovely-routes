@@ -23,6 +23,7 @@ class Routes extends Component {
               key={route.id}
               route={route}
               onToggleIsFavorite={this.props.onToggleIsFavorite}
+              onSelectRoute={this.props.onSelectRoute}
             />
           );
         })}
