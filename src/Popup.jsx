@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+
+import store from "./store/store";
+import { closePopUpWindow } from "./ducks/popupwindow";
 const hash = require("object-hash");
 
 class Popup extends Component {
@@ -10,6 +13,10 @@ class Popup extends Component {
     shortDesc: "",
     fullDesc: "",
     length: "10km"
+  };
+
+  handleCloseBtn = () => {
+    store.dispatch(closePopUpWindow());
   };
 
   handleInputChange = event => {
@@ -30,7 +37,7 @@ class Popup extends Component {
     });
 
     this.props.onAddRoute(this.state);
-    this.props.onCloseBtn();
+    /*store.dispatch(closePopUpWindow());*/
   };
 
   render() {
@@ -94,7 +101,7 @@ class Popup extends Component {
           <button
             className="btn btn-sm close position-absolute"
             style={{ top: "2%", right: "2%" }}
-            onClick={this.props.onCloseBtn}
+            onClick={this.handleCloseBtn}
           >
             &times;
           </button>

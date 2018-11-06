@@ -1,15 +1,25 @@
 import React, { Component, Fragment } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import Popup from "./Popup";
 import Header from "./Header";
 import Main from "./Main";
 import { routes } from "./config";
 
+import store from "./store/store";
+
 class App extends Component {
   state = {
     inputValue: "",
-    isPopUpOpened: false,
     routes: routes
+  };
+
+  componentDidMount = () => {
+    this.unsubscribe = store.subscribe(() => this.forceUpdate());
+  };
+
+  componentWillUnmount = () => {
+    this.unsubscribe();
   };
 
   handleIsSelected = route => {
@@ -36,10 +46,6 @@ class App extends Component {
     this.setState({ routes });
   };
 
-  handleAddRouteBtn = () => this.setState({ isPopUpOpened: true });
-
-  handleCloseBtn = () => this.setState({ isPopUpOpened: false });
-
   handleAddRoute = route => {
     const routes = [...this.state.routes, route];
     this.setState({ routes });
@@ -52,7 +58,7 @@ class App extends Component {
           className="container bg-light d-flex flex-column"
           style={{ height: "100vh" }}
         >
-          <Header onAddRouteBtn={this.handleAddRouteBtn} />
+          <Header />
           <Main
             routes={this.state.routes}
             inputValue={this.state.inputValue}
@@ -62,12 +68,8 @@ class App extends Component {
             onRemoveRoute={this.handleRemoveRoute}
           />
         </div>
-        {this.state.isPopUpOpened ? (
-          <Popup
-            isPopUpOpened={this.state.isPopUpOpened}
-            onCloseBtn={this.handleCloseBtn}
-            onAddRoute={this.handleAddRoute}
-          />
+        {store.getState().popUpWindow.isOpened ? (
+          <Popup onAddRoute={this.handleAddRoute} />
         ) : null}
       </Fragment>
     );
