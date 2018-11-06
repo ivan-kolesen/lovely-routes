@@ -30,6 +30,11 @@ class App extends Component {
     this.setState({ inputValue: e.target.value });
   };
 
+  handleRemoveRoute = id => {
+    const routes = this.state.routes.filter(route => route.id !== id);
+    this.setState({ routes });
+  };
+
   render() {
     return (
       <Fragment>
@@ -40,6 +45,7 @@ class App extends Component {
           onInputChange={this.handleInputChange}
           onToggleIsFavorite={this.handleIsFavorite}
           onSelectRoute={this.handleIsSelected}
+          onRemoveRoute={this.handleRemoveRoute}
         />
         <Popup />
       </Fragment>

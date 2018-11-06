@@ -59,5 +59,25 @@ export const routes = [
     fullDesc:
       "fulldesc6 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer turpis tellus, posuere vitae mi eget, aliquet tempus ligula. Donec mi massa, gravida in odio ut, consectetur volutpat elit. Vivamus dignissim lacus sit amet feugiat consequat. Cras hendrerit sollicitudin tempor. Vestibulum pharetra lectus et elementum interdum. In sed sollicitudin magna, a dapibus libero. Nullam at maximus lectus. Donec interdum congue arcu eget porttitor. Phasellus rhoncus porttitor lorem vitae tempor. Mauris suscipit, purus ac pharetra accumsan, magna justo pretium nibh, non consequat libero nisi maximus lectus. Aliquam erat volutpat. Vestibulum vel justo vulputate, imperdiet quam vitae, malesuada dolor. Cras sit amet rhoncus tortor, a aliquet lorem. Proin interdum a velit in varius.",
     length: "2km"
+  },
+  {
+    id: "7",
+    isSelected: false,
+    isFavourite: true,
+    title: "Praha - Belgrad",
+    shortDesc: "Go by bike",
+    fullDesc:
+      "fulldesc7 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer turpis tellus, posuere vitae mi eget, aliquet tempus ligula. Donec mi massa, gravida in odio ut, consectetur volutpat elit. Vivamus dignissim lacus sit amet feugiat consequat. Cras hendrerit sollicitudin tempor. Vestibulum pharetra lectus et elementum interdum. In sed sollicitudin magna, a dapibus libero. Nullam at maximus lectus. Donec interdum congue arcu eget porttitor. Phasellus rhoncus porttitor lorem vitae tempor. Mauris suscipit, purus ac pharetra accumsan, magna justo pretium nibh, non consequat libero nisi maximus lectus. Aliquam erat volutpat. Vestibulum vel justo vulputate, imperdiet quam vitae, malesuada dolor. Cras sit amet rhoncus tortor, a aliquet lorem. Proin interdum a velit in varius.",
+    length: "2km"
+  },
+  {
+    id: "8",
+    isSelected: false,
+    isFavourite: true,
+    title: "Rome - Milan",
+    shortDesc: "Buy clothes",
+    fullDesc:
+      "fulldesc8 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer turpis tellus, posuere vitae mi eget, aliquet tempus ligula. Donec mi massa, gravida in odio ut, consectetur volutpat elit. Vivamus dignissim lacus sit amet feugiat consequat. Cras hendrerit sollicitudin tempor. Vestibulum pharetra lectus et elementum interdum. In sed sollicitudin magna, a dapibus libero. Nullam at maximus lectus. Donec interdum congue arcu eget porttitor. Phasellus rhoncus porttitor lorem vitae tempor. Mauris suscipit, purus ac pharetra accumsan, magna justo pretium nibh, non consequat libero nisi maximus lectus. Aliquam erat volutpat. Vestibulum vel justo vulputate, imperdiet quam vitae, malesuada dolor. Cras sit amet rhoncus tortor, a aliquet lorem. Proin interdum a velit in varius.",
+    length: "2km"
   }
 ];

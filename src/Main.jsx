@@ -4,6 +4,7 @@ import Description from "./Description";
 
 class Main extends Component {
   render() {
+    const [selectedRoute] = this.props.routes.filter(route => route.isSelected);
     return (
       <div className="row flex-grow-1">
         <div className="d-flex flex-column col-lg-6 p-3 border-right text-center">
@@ -19,7 +20,13 @@ class Main extends Component {
             onSelectRoute={this.props.onSelectRoute}
           />
         </div>
-        <Description />
+        {selectedRoute ? (
+          <Description
+            route={selectedRoute}
+            onToggleIsFavorite={this.props.onToggleIsFavorite}
+            onRemoveRoute={this.props.onRemoveRoute}
+          />
+        ) : null}
       </div>
     );
   }
