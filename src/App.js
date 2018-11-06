@@ -7,7 +7,7 @@ import { routes } from "./config";
 
 class App extends Component {
   state = {
-    input: "",
+    inputValue: "",
     routes: routes
   };
 
@@ -18,13 +18,19 @@ class App extends Component {
     this.setState(routes);
   };
 
+  handleInputChange = e => {
+    this.setState({ inputValue: e.target.value });
+  };
+
   render() {
     return (
       <Fragment>
         <Header />
         <Main
           routes={this.state.routes}
+          inputValue={this.state.inputValue}
           onToggleIsFavorite={this.handleIsFavorite}
+          onInputChange={this.handleInputChange}
         />
         <Popup />
       </Fragment>
