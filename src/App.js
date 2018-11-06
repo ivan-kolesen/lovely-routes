@@ -57,10 +57,12 @@ class App extends Component {
             onRemoveRoute={this.handleRemoveRoute}
           />
         </div>
-        <Popup
-          isPopUpOpened={this.state.isPopUpOpened}
-          onCloseBtn={this.handleCloseBtn}
-        />
+        {this.state.isPopUpOpened ? (
+          <Popup
+            isPopUpOpened={this.state.isPopUpOpened}
+            onCloseBtn={this.handleCloseBtn}
+          />
+        ) : null}
       </Fragment>
     );
   }
