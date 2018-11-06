@@ -1,18 +1,18 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
-class Description extends Component{
-  render(){
+class Description extends Component {
+  render() {
     return (
-      <div className="selectedRoute">
+      <div className="col-lg-6">
         <div className="selectedTitle">
-          <div className="title"></div>
-          <div className="km"></div>
+          <div className="title" />
+          <div className="km" />
         </div>
-        <div className="fullDesc"></div>
-        <div className="image"></div>
+        <div className="fullDesc" />
+        <div className="image" />
         <div className="buttons">
-          <div className="button1"></div>
-          <div className="button2"></div>
+          <div className="button1" />
+          <div className="button2" />
         </div>
       </div>
     );

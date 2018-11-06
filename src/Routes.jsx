@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import Route from "./Route";
 
-class Routes extends Component{
-  render(){
+class Routes extends Component {
+  render() {
     return (
-      <div className="routes">
+      <div className="pt-3">
         <Route />
       </div>
     );

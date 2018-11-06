@@ -1,11 +1,17 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
-class Header extends Component{
-  render(){
+class Header extends Component {
+  render() {
     return (
-      <div className="header">
-        <div className="title"></div>
-        <div className="button"></div>
+      <div className="row border-bottom border-info">
+        <div className="col-lg-8 p-3 text-center">
+          <h1 className="h1">LovelyRoutes</h1>
+        </div>
+        <div className="col-lg-4 p-3 text-center">
+          <button className="btn btn-sm btn-info pl-4 pr-4 m-2">
+            Add Path
+          </button>
+        </div>
       </div>
     );
   }
