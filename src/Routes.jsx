@@ -3,7 +3,9 @@ import Route from "./Route";
 
 class Routes extends Component {
   render() {
-    let routes = this.props.routes;
+    let routes = this.props.routes.sort(
+      (a, b) => b.isFavourite - a.isFavourite
+    );
     return (
       <div className="flex-grow-1" style={{ overflow: "scroll" }}>
         {routes.map(route => {
