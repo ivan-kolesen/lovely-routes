@@ -8,6 +8,7 @@ import { routes } from "./config";
 class App extends Component {
   state = {
     inputValue: "",
+    isPopUpOpened: false,
     routes: routes
   };
 
@@ -35,19 +36,31 @@ class App extends Component {
     this.setState({ routes });
   };
 
+  handleAddPathBtn = () => this.setState({ isPopUpOpened: true });
+
+  handleCloseBtn = () => this.setState({ isPopUpOpened: false });
+
   render() {
     return (
       <Fragment>
-        <Header />
-        <Main
-          routes={this.state.routes}
-          inputValue={this.state.inputValue}
-          onInputChange={this.handleInputChange}
-          onToggleIsFavorite={this.handleIsFavorite}
-          onSelectRoute={this.handleIsSelected}
-          onRemoveRoute={this.handleRemoveRoute}
+        <div
+          className="container bg-light d-flex flex-column"
+          style={{ height: "100vh" }}
+        >
+          <Header onAddPathBtn={this.handleAddPathBtn} />
+          <Main
+            routes={this.state.routes}
+            inputValue={this.state.inputValue}
+            onInputChange={this.handleInputChange}
+            onToggleIsFavorite={this.handleIsFavorite}
+            onSelectRoute={this.handleIsSelected}
+            onRemoveRoute={this.handleRemoveRoute}
+          />
+        </div>
+        <Popup
+          isPopUpOpened={this.state.isPopUpOpened}
+          onCloseBtn={this.handleCloseBtn}
         />
-        <Popup />
       </Fragment>
     );
   }
