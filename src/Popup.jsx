@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { routes } from "./config";
+
 const hash = require("object-hash");
 
 class Popup extends Component {
@@ -19,8 +21,15 @@ class Popup extends Component {
   };
 
   handleSubmit = () => {
-    const h = hash(this.state);
-    console.log(h);
+    const id = hash(this.state);
+
+    this.setState({
+      id: id
+    });
+
+    routes.push(this.state);
+
+    this.props.onCloseBtn();
   };
 
   render() {

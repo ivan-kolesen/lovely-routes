@@ -1,4 +1,4 @@
-export const routes = [
+export let routes = [
   {
     id: "1",
     isSelected: false,
