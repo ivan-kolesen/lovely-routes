@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+const hash = require("object-hash");
 
 class Popup extends Component {
   state = {
@@ -17,7 +18,10 @@ class Popup extends Component {
     });
   };
 
-  handleSubmit = () => {};
+  handleSubmit = () => {
+    const h = hash(this.state);
+    console.log(h);
+  };
 
   render() {
     return (
