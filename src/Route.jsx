@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 
+import store from "./store/store";
+import { setRoutes } from "./ducks/routes";
+
 class Route extends Component {
   getClassName = () => {
     return `row m-0 border border-dark rounded mt-1 ${
@@ -7,12 +10,27 @@ class Route extends Component {
     }`;
   };
 
+  handleSelect = route => {
+    const routes = [...store.getState().routes.allRoutes];
+    const index = routes.indexOf(route);
+    routes.forEach(route => (route.isSelected = false));
+    routes[index].isSelected = true;
+    store.dispatch(setRoutes(routes));
+  };
+
+  handleLike = route => {
+    const routes = [...store.getState().routes.allRoutes];
+    const index = routes.indexOf(route);
+    routes[index].isFavourite = !routes[index].isFavourite;
+    store.dispatch(setRoutes(routes));
+  };
+
   render() {
     return (
       <div
         className={this.getClassName()}
         onClick={() => {
-          this.props.onSelectRoute(this.props.route);
+          this.handleSelect(this.props.route);
         }}
       >
         <div className="d-flex align-items-center justify-content-center col-lg-2 p-1">
@@ -20,7 +38,7 @@ class Route extends Component {
             width="40"
             height="40"
             onClick={() => {
-              this.props.onToggleIsFavorite(this.props.route);
+              this.handleLike(this.props.route);
             }}
           >
             <polygon

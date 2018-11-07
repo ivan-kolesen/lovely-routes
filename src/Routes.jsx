@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import Route from "./Route";
 
+import store from "./store/store";
+
 class Routes extends Component {
   render() {
-    let routes = this.props.routes.sort(
-      (a, b) => b.isFavourite - a.isFavourite
-    );
+    let routes = store
+      .getState()
+      .routes.allRoutes.sort((a, b) => b.isFavourite - a.isFavourite);
     routes = routes.filter(route => {
-      const inputValue = this.props.inputValue.toLowerCase();
+      const inputValue = store.getState().searchBar.value.toLowerCase();
       const formatedTitle = route.title.toLowerCase();
       const formatedDesc = route.fullDesc.toLowerCase();
       return (
@@ -18,14 +20,7 @@ class Routes extends Component {
     return (
       <div className="flex-grow-1" style={{ overflow: "scroll" }}>
         {routes.map(route => {
-          return (
-            <Route
-              key={route.id}
-              route={route}
-              onToggleIsFavorite={this.props.onToggleIsFavorite}
-              onSelectRoute={this.props.onSelectRoute}
-            />
-          );
+          return <Route key={route.id} route={route} />;
         })}
       </div>
     );

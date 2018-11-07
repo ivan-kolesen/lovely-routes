@@ -1,32 +1,31 @@
 import React, { Component } from "react";
+
 import Routes from "./Routes";
 import Description from "./Description";
 
+import store from "./store/store";
+import { setValue } from "./ducks/searchbar";
+
 class Main extends Component {
+  handleSearch = e => {
+    store.dispatch(setValue(e.target.value));
+  };
+
   render() {
-    const [selectedRoute] = this.props.routes.filter(route => route.isSelected);
+    const [selectedRoute] = store
+      .getState()
+      .routes.allRoutes.filter(route => route.isSelected);
     return (
       <div className="row flex-grow-1">
         <div className="d-flex flex-column col-lg-6 p-3 border-right text-center">
           <input
             className="w-100 pl-2 mb-3"
             placeholder="Search..."
-            onChange={this.props.onInputChange}
+            onChange={this.handleSearch}
           />
-          <Routes
-            routes={this.props.routes}
-            inputValue={this.props.inputValue}
-            onToggleIsFavorite={this.props.onToggleIsFavorite}
-            onSelectRoute={this.props.onSelectRoute}
-          />
+          <Routes />
         </div>
-        {selectedRoute ? (
-          <Description
-            route={selectedRoute}
-            onToggleIsFavorite={this.props.onToggleIsFavorite}
-            onRemoveRoute={this.props.onRemoveRoute}
-          />
-        ) : null}
+        {selectedRoute ? <Description route={selectedRoute} /> : null}
       </div>
     );
   }

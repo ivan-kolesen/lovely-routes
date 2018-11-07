@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import store from "./store/store";
 import { closePopUpWindow } from "./ducks/popupwindow";
+import { setRoutes } from "./ducks/routes";
+
 const hash = require("object-hash");
 
 class Popup extends Component {
@@ -19,8 +21,8 @@ class Popup extends Component {
     store.dispatch(closePopUpWindow());
   };
 
-  handleInputChange = event => {
-    const target = event.target;
+  handleInputChange = e => {
+    const target = e.target;
     const value = target.value;
     const name = target.name;
 
@@ -36,8 +38,9 @@ class Popup extends Component {
       return { id: id };
     });
 
-    this.props.onAddRoute(this.state);
-    /*store.dispatch(closePopUpWindow());*/
+    const updatedRoutes = [...store.getState().routes.allRoutes, this.state];
+    store.dispatch(setRoutes(updatedRoutes));
+    store.dispatch(closePopUpWindow());
   };
 
   render() {

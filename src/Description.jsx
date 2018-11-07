@@ -1,6 +1,35 @@
 import React, { Component } from "react";
 
+import store from "./store/store";
+import { setRoutes } from "./ducks/routes";
+
 class Description extends Component {
+  handleLike = route => {
+    const routes = [...store.getState().routes.allRoutes];
+    const index = routes.indexOf(route);
+    routes[index].isFavourite = !routes[index].isFavourite;
+    store.dispatch(setRoutes(routes));
+  };
+
+  handleRemove = id => {
+    const routes = store
+      .getState()
+      .routes.allRoutes.filter(route => route.id !== id);
+    store.dispatch(setRoutes(routes));
+  };
+
+  getClassName = () => {
+    return `btn btn-sm m-1 ${
+      this.props.route.isFavourite ? "btn-warning" : "btn-success"
+    }`;
+  };
+
+  getButtonName = () => {
+    return this.props.route.isFavourite
+      ? "Remove from favorites"
+      : "Add to favorites";
+  };
+
   render() {
     return (
       <div className="d-flex flex-column col-lg-6 p-4 text-center">
@@ -14,19 +43,17 @@ class Description extends Component {
         <div className="h-50 bg-warning" />
         <div className="">
           <button
-            className="btn btn-sm btn-success m-1"
+            className={this.getClassName()}
             onClick={() => {
-              this.props.onToggleIsFavorite(this.props.route);
+              this.handleLike(this.props.route);
             }}
           >
-            {this.props.route.isFavourite
-              ? "Remove from favorites"
-              : "Add to favorites"}
+            {this.getButtonName()}
           </button>
           <button
             className="btn btn-sm btn-danger m-1"
             onClick={() => {
-              this.props.onRemoveRoute(this.props.route.id);
+              this.handleRemove(this.props.route.id);
             }}
           >
             Remove
