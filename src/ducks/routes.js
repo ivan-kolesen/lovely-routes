@@ -1,26 +1,29 @@
 // routes.js
+import { routesRef } from "../config/firebase";
 
 // Actions
-
-export const SET_ROUTES = "lovely-routes/routes/SET_ROUTES";
+export const FETCH_ROUTES = "lovely-routes/routes/FETCH_ROUTES";
 
 // Reducers
-export default function routes(state = {}, action) {
+export function routes(state = {}, action) {
   switch (action.type) {
-    case SET_ROUTES:
-      return {
-        ...state,
-        allRoutes: action.allRoutes
-      };
+    case FETCH_ROUTES:
+      return action.payload;
     default:
       return state;
   }
 }
 
 //Actions creators
-export function setRoutes(data) {
-  return {
-    type: SET_ROUTES,
-    allRoutes: data
-  };
-}
+export const fetchRoutes = () => async dispatch => {
+  routesRef.on("value", snapshot => {
+    dispatch({
+      type: FETCH_ROUTES,
+      payload: snapshot.val()
+    });
+  });
+};
+
+export const addRoute = newRoute => async dispatch => {
+  routesRef.push().set(newRoute);
+};

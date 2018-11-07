@@ -1,8 +1,9 @@
+/*
 import React, { Component } from "react";
 
-import store from "./store/store";
-import { closePopUpWindow } from "./ducks/popupwindow";
-import { setRoutes } from "./ducks/routes";
+import store from "../store/store";
+import { closePopUpWindow } from "../ducks/popupwindow";
+import { setRoutes } from "../ducks/routes";
 
 const hash = require("object-hash");
 
@@ -115,3 +116,4 @@ class Popup extends Component {
 }
 
 export default Popup;
+*/

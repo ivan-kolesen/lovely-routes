@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import store from "./store/store";
-import { setRoutes } from "./ducks/routes";
+import store from "../store/store";
+import { setRoutes } from "../ducks/routes";
 
 class Route extends Component {
   getClassName = () => {
@@ -10,7 +10,7 @@ class Route extends Component {
     }`;
   };
 
-  handleSelect = route => {
+  /*handleSelect = route => {
     const routes = [...store.getState().routes.allRoutes];
     const index = routes.indexOf(route);
     routes.forEach(route => (route.isSelected = false));
@@ -23,29 +23,18 @@ class Route extends Component {
     const index = routes.indexOf(route);
     routes[index].isFavourite = !routes[index].isFavourite;
     store.dispatch(setRoutes(routes));
-  };
+  };*/
 
   render() {
     return (
-      <div
-        className={this.getClassName()}
-        onClick={() => {
-          this.handleSelect(this.props.route);
-        }}
-      >
+      <div className={this.getClassName()} onClick={() => {}}>
         <div className="d-flex align-items-center justify-content-center col-lg-2 p-1">
-          <svg
-            width="40"
-            height="40"
-            onClick={() => {
-              this.handleLike(this.props.route);
-            }}
-          >
+          <svg width="40" height="40" onClick={() => {}}>
             <polygon
               points="20,2 8,39.6 38,15.6 2,15.6 32,39.6"
               stroke="black"
               strokeWidth="1"
-              fill={this.props.route.isFavourite ? "yellow" : "transparent"}
+              fill={this.props.route.isFavorite ? "yellow" : "transparent"}
             />
           </svg>
         </div>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import store from "./store/store";
-import { openPopUpWindow } from "./ducks/popupwindow";
+import store from "../store/store";
+import { openPopUpWindow } from "../ducks/popupwindow";
 
 class Header extends Component {
   handleAddPathBtn = () => {
