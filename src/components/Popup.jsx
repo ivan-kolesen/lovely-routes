@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import store from "./store/store";
-import { closePopUpWindow } from "./ducks/popupwindow";
-import { setRoutes } from "./ducks/routes";
+import { store } from "../index";
+
+import { closePopUpWindow } from "../actions/index";
+import { setRoutes } from "../actions/index";
 
 const hash = require("object-hash");
 
@@ -18,7 +20,8 @@ class Popup extends Component {
   };
 
   handleCloseBtn = () => {
-    store.dispatch(closePopUpWindow());
+    const { closePopUpWindow } = this.props;
+    closePopUpWindow();
   };
 
   handleInputChange = e => {
@@ -39,8 +42,9 @@ class Popup extends Component {
     });
 
     const updatedRoutes = [...store.getState().routes.allRoutes, this.state];
+    const { setRoutes, closePopUpWindow } = this.props;
     store.dispatch(setRoutes(updatedRoutes));
-    store.dispatch(closePopUpWindow());
+    closePopUpWindow();
   };
 
   render() {
@@ -114,4 +118,7 @@ class Popup extends Component {
   }
 }
 
-export default Popup;
+export default connect(
+  null,
+  { closePopUpWindow, setRoutes }
+)(Popup);

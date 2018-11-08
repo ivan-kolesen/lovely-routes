@@ -1,16 +1,19 @@
 import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
 
 import Popup from "./Popup";
 import Header from "./Header";
 import Main from "./Main";
 import { routes } from "./config";
 
-import store from "./store/store";
-import { setRoutes } from "./ducks/routes";
+import { store } from "../index";
+
+import { setRoutes } from "../actions/index";
 
 class App extends Component {
   componentWillMount = () => {
-    store.dispatch(setRoutes(routes));
+    const { setRoutes } = this.props;
+    setRoutes(routes);
   };
 
   componentDidMount = () => {
@@ -37,4 +40,7 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(
+  null,
+  { setRoutes }
+)(App);

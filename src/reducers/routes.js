@@ -1,10 +1,5 @@
-// routes.js
+import { SET_ROUTES } from "../actions/types";
 
-// Actions
-
-export const SET_ROUTES = "lovely-routes/routes/SET_ROUTES";
-
-// Reducers
 export default function routes(state = {}, action) {
   switch (action.type) {
     case SET_ROUTES:
@@ -15,12 +10,4 @@ export default function routes(state = {}, action) {
     default:
       return state;
   }
-}
-
-//Actions creators
-export function setRoutes(data) {
-  return {
-    type: SET_ROUTES,
-    allRoutes: data
-  };
 }

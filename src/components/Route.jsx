@@ -1,17 +1,28 @@
 import React, { Component } from "react";
 
-import store from "./store/store";
-import { setRoutes } from "./ducks/routes";
+import { setRoutes } from "../actions/index";
+import { connect } from "react-redux";
+
+import { store } from "../index";
 
 class Route extends Component {
-  getClassName = () => {
+  componentDidMount = () => {
+    this.unsubscribe = store.subscribe(() => this.forceUpdate());
+  };
+
+  componentWillUnmount = () => {
+    this.unsubscribe();
+  };
+
+  getClassName = route => {
     return `row m-0 border border-dark rounded mt-1 ${
-      this.props.route.isSelected ? "bg-info" : null
+      route.isSelected ? "bg-info" : null
     }`;
   };
 
   handleSelect = route => {
-    const routes = [...store.getState().routes.allRoutes];
+    const { setRoutes } = this.props;
+    const routes = store.getState().routes.allRoutes;
     const index = routes.indexOf(route);
     routes.forEach(route => (route.isSelected = false));
     routes[index].isSelected = true;
@@ -19,18 +30,19 @@ class Route extends Component {
   };
 
   handleLike = route => {
-    const routes = [...store.getState().routes.allRoutes];
+    const routes = store.getState().routes.allRoutes;
     const index = routes.indexOf(route);
     routes[index].isFavourite = !routes[index].isFavourite;
     store.dispatch(setRoutes(routes));
   };
 
   render() {
+    const { route } = this.props;
     return (
       <div
-        className={this.getClassName()}
+        className={this.getClassName(route)}
         onClick={() => {
-          this.handleSelect(this.props.route);
+          this.handleSelect(route);
         }}
       >
         <div className="d-flex align-items-center justify-content-center col-lg-2 p-1">
@@ -38,23 +50,23 @@ class Route extends Component {
             width="40"
             height="40"
             onClick={() => {
-              this.handleLike(this.props.route);
+              this.handleLike(route);
             }}
           >
             <polygon
               points="20,2 8,39.6 38,15.6 2,15.6 32,39.6"
               stroke="black"
               strokeWidth="1"
-              fill={this.props.route.isFavourite ? "yellow" : "transparent"}
+              fill={route.isFavourite ? "yellow" : "transparent"}
             />
           </svg>
         </div>
         <div className="col-lg-7 p-1">
-          <h2 className="h5 m-0 p-1">{this.props.route.title}</h2>
-          <p className="m-0 p-1">{this.props.route.shortDesc}</p>
+          <h2 className="h5 m-0 p-1">{route.title}</h2>
+          <p className="m-0 p-1">{route.shortDesc}</p>
         </div>
         <div className="d-flex align-items-center justify-content-center col-lg-2 p-1">
-          {this.props.route.length}
+          {route.length}
         </div>
         <div className="d-flex align-items-center justify-content-center col-lg-1 p-1">
           ->
@@ -64,4 +76,7 @@ class Route extends Component {
   }
 }
 
-export default Route;
+export default connect(
+  null,
+  { setRoutes }
+)(Route);

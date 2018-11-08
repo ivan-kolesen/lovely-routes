@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import store from "./store/store";
-import { openPopUpWindow } from "./ducks/popupwindow";
+import { openPopUpWindow } from "../actions/index";
 
 class Header extends Component {
   handleAddPathBtn = () => {
-    store.dispatch(openPopUpWindow());
+    const { openPopUpWindow } = this.props;
+    openPopUpWindow();
   };
 
   render() {
@@ -27,4 +28,7 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default connect(
+  null,
+  { openPopUpWindow }
+)(Header);
