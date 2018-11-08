@@ -31,6 +31,7 @@ class Main extends Component {
 
   render() {
     let { routes } = this.props;
+    console.log(routes);
 
     /*const selectedRouteId = _.findKey(store.getState().routes.allRoutes, 'isSelected');*/
 
