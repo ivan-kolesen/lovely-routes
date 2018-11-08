@@ -17,13 +17,20 @@ class Main extends Component {
     this.props.fetchRoutes();
   };
 
+  componentDidMount = () => {
+    this.unsubscribe = store.subscribe(() => this.forceUpdate());
+  };
+
+  componentWillUnmount = () => {
+    this.unsubscribe();
+  };
+
   handleSearch = e => {
     store.dispatch(setValue(e.target.value));
   };
 
   render() {
     let { routes } = this.props;
-    console.log(routes);
 
     /*const selectedRouteId = _.findKey(store.getState().routes.allRoutes, 'isSelected');*/
 
