@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { closePopUpWindow } from "../actions/index";
-import { setRoutes, addRoute } from "../actions/index";
+import { addRoute } from "../actions/index";
 
 class Popup extends Component {
   state = {
-    isFavourite: false,
+    isFavorite: false,
     isSelected: false,
     title: "",
     shortDesc: "",
@@ -34,7 +34,7 @@ class Popup extends Component {
     const { addRoute, closePopUpWindow } = this.props;
 
     addRoute({
-      isFavourite: this.state.isFavourite,
+      isFavorite: this.state.isFavorite,
       title: this.state.title,
       shortDesc: this.state.shortDesc,
       fullDesc: this.state.fullDesc,
@@ -118,5 +118,5 @@ const mapStateToProps = ({ route }) => {
 
 export default connect(
   mapStateToProps,
-  { closePopUpWindow, setRoutes, addRoute }
+  { closePopUpWindow, addRoute }
 )(Popup);

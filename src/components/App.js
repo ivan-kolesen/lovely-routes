@@ -4,11 +4,10 @@ import { connect } from "react-redux";
 import Popup from "./Popup";
 import Header from "./Header";
 import Main from "./Main";
-import { routes } from "./config";
 
 import { store } from "../index";
 
-import { setRoutes, fetchRoutes } from "../actions/index";
+import { fetchRoutes } from "../actions/index";
 
 class App extends Component {
   componentWillMount() {
@@ -41,5 +40,5 @@ class App extends Component {
 
 export default connect(
   null,
-  { setRoutes, fetchRoutes }
+  { fetchRoutes }
 )(App);

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { setRoutes } from "../actions/index";
+import { likeRoute, selectRoute } from "../actions/index";
 import { connect } from "react-redux";
 
 import { store } from "../index";
@@ -14,35 +14,29 @@ class Route extends Component {
     this.unsubscribe();
   };
 
-  getClassName = route => {
+  getClassName = id => {
     return `row m-0 border border-dark rounded mt-1 ${
-      route.isSelected ? "bg-info" : null
+      store.getState().selectedRoute.id === id ? "bg-info" : null
     }`;
   };
 
-  handleSelect = route => {
-    const { setRoutes } = this.props;
-    const routes = store.getState().routes.allRoutes;
-    const index = routes.indexOf(route);
-    routes.forEach(route => (route.isSelected = false));
-    routes[index].isSelected = true;
-    store.dispatch(setRoutes(routes));
+  handleSelect = id => {
+    const { selectRoute } = this.props;
+    store.dispatch(selectRoute(id));
   };
 
-  handleLike = route => {
-    const routes = store.getState().routes.allRoutes;
-    const index = routes.indexOf(route);
-    routes[index].isFavourite = !routes[index].isFavourite;
-    store.dispatch(setRoutes(routes));
+  handleLike = (id, newState) => {
+    const { likeRoute } = this.props;
+    likeRoute(id, newState);
   };
 
   render() {
     const { route } = this.props;
     return (
       <div
-        className={this.getClassName(route)}
+        className={this.getClassName(route.id)}
         onClick={() => {
-          this.handleSelect(route);
+          this.handleSelect(route.id);
         }}
       >
         <div className="d-flex align-items-center justify-content-center col-lg-2 p-1">
@@ -50,14 +44,14 @@ class Route extends Component {
             width="40"
             height="40"
             onClick={() => {
-              this.handleLike(route);
+              this.handleLike(route.id, !route.isFavorite);
             }}
           >
             <polygon
               points="20,2 8,39.6 38,15.6 2,15.6 32,39.6"
               stroke="black"
               strokeWidth="1"
-              fill={route.isFavourite ? "yellow" : "transparent"}
+              fill={route.isFavorite ? "yellow" : "transparent"}
             />
           </svg>
         </div>
@@ -78,5 +72,5 @@ class Route extends Component {
 
 export default connect(
   null,
-  { setRoutes }
+  { likeRoute, selectRoute }
 )(Route);

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { setRoutes } from "../actions/index";
+import { removeRoute, likeRoute } from "../actions/index";
 import { connect } from "react-redux";
 import { store } from "../index";
 
@@ -13,28 +13,24 @@ class Description extends Component {
     this.unsubscribe();
   };
 
-  handleLike = route => {
-    const routes = store.getState().routes.allRoutes;
-    const index = routes.indexOf(route);
-    routes[index].isFavourite = !routes[index].isFavourite;
-    store.dispatch(setRoutes(routes));
+  handleLike = (id, newState) => {
+    const { likeRoute } = this.props;
+    likeRoute(id, newState);
   };
 
   handleRemove = id => {
-    const routes = store
-      .getState()
-      .routes.allRoutes.filter(route => route.id !== id);
-    store.dispatch(setRoutes(routes));
+    const { removeRoute } = this.props;
+    removeRoute(id);
   };
 
   getClassName = () => {
     return `btn btn-sm m-1 ${
-      this.props.route.isFavourite ? "btn-warning" : "btn-success"
+      this.props.route.isFavorite ? "btn-warning" : "btn-success"
     }`;
   };
 
   getButtonName = () => {
-    return this.props.route.isFavourite
+    return this.props.route.isFavorite
       ? "Remove from favorites"
       : "Add to favorites";
   };
@@ -55,7 +51,7 @@ class Description extends Component {
           <button
             className={this.getClassName()}
             onClick={() => {
-              this.handleLike(route);
+              this.handleLike(route.id, !route.isFavorite);
             }}
           >
             {this.getButtonName()}
@@ -76,5 +72,5 @@ class Description extends Component {
 
 export default connect(
   null,
-  { setRoutes }
+  { removeRoute, likeRoute }
 )(Description);

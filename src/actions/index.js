@@ -4,7 +4,8 @@ import {
   OPEN_WINDOW,
   CLOSE_WINDOW,
   SET_VALUE,
-  FETCH_ROUTES
+  FETCH_ROUTES,
+  SELECT_ROUTE
 } from "./types";
 
 export function setRoutes(data) {
@@ -33,6 +34,13 @@ export function setValue(value) {
   };
 }
 
+export function selectRoute(id) {
+  return {
+    type: SELECT_ROUTE,
+    id: id
+  };
+}
+
 export const addRoute = newRoute => async dispatch => {
   routesRef.push().set(newRoute);
 };
@@ -49,4 +57,12 @@ export const fetchRoutes = () => async dispatch => {
       allRoutes: newSnapshot
     });
   });
+};
+
+export const removeRoute = id => async dispatch => {
+  routesRef.child(id).remove();
+};
+
+export const likeRoute = (id, val) => async dispatch => {
+  routesRef.child(id).update({ isFavorite: val });
 };

@@ -5,14 +5,10 @@ import Description from "./Description";
 
 import { store } from "../index";
 
-import { setValue, fetchRoutes } from "../actions/index";
+import { setValue } from "../actions/index";
 import { connect } from "react-redux";
 
 class Main extends Component {
-  componentWillMount() {
-    this.props.fetchRoutes();
-  }
-
   componentDidMount = () => {
     this.unsubscribe = store.subscribe(() => this.forceUpdate());
   };
@@ -28,6 +24,7 @@ class Main extends Component {
 
   render() {
     let { routes } = this.props;
+    const selectedRouteId = store.getState().selectedRoute.id;
     routes = routes.allRoutes || [];
     routes =
       routes.filter(route => {
@@ -39,7 +36,9 @@ class Main extends Component {
           formatedDesc.indexOf(inputValue) > -1
         );
       }) || [];
-    const [selectedRoute] = routes.filter(route => route.isSelected);
+    const [selectedRoute] = routes.filter(
+      route => route.id === selectedRouteId
+    );
     return (
       <div className="row flex-grow-1">
         <div className="d-flex flex-column col-lg-6 p-3 border-right text-center">
@@ -68,5 +67,5 @@ const mapStateToProps = ({ routes }) => {
 
 export default connect(
   mapStateToProps,
-  { setValue, fetchRoutes }
+  { setValue }
 )(Main);
