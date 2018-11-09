@@ -1,4 +1,4 @@
-//import { todosRef } from "../config/firebase";
+import { routesRef } from "../config/firebase";
 import { SET_ROUTES, OPEN_WINDOW, CLOSE_WINDOW, SET_VALUE } from "./types";
 
 export function setRoutes(data) {
@@ -26,3 +26,7 @@ export function setValue(value) {
     value: value
   };
 }
+
+export const addRoute = newRoute => async dispatch => {
+  routesRef.push().set(newRoute);
+};

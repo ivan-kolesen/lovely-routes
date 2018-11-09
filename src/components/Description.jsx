@@ -5,6 +5,14 @@ import { connect } from "react-redux";
 import { store } from "../index";
 
 class Description extends Component {
+  componentDidMount = () => {
+    this.unsubscribe = store.subscribe(() => this.forceUpdate());
+  };
+
+  componentWillUnmount = () => {
+    this.unsubscribe();
+  };
+
   handleLike = route => {
     const routes = store.getState().routes.allRoutes;
     const index = routes.indexOf(route);

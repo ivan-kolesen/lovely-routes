@@ -1,17 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { store } from "../index";
-
 import { closePopUpWindow } from "../actions/index";
-import { setRoutes } from "../actions/index";
-
-const hash = require("object-hash");
+import { setRoutes, addRoute } from "../actions/index";
 
 class Popup extends Component {
   state = {
-    id: "",
-    isSelected: false,
     isFavourite: false,
     title: "",
     shortDesc: "",
@@ -34,16 +28,17 @@ class Popup extends Component {
     });
   };
 
-  handleSubmit = () => {
-    const id = hash(this.state);
+  handleSubmit = e => {
+    e.preventDefault();
+    const { addRoute, closePopUpWindow } = this.props;
 
-    this.setState(() => {
-      return { id: id };
+    addRoute({
+      isFavourite: this.state.isFavourite,
+      title: this.state.title,
+      shortDesc: this.state.shortDesc,
+      fullDesc: this.state.fullDesc,
+      length: this.state.length
     });
-
-    const updatedRoutes = [...store.getState().routes.allRoutes, this.state];
-    const { setRoutes, closePopUpWindow } = this.props;
-    store.dispatch(setRoutes(updatedRoutes));
     closePopUpWindow();
   };
 
@@ -93,13 +88,11 @@ class Popup extends Component {
                 required
               />
             </div>
-            <div className="text-center">45km</div>
+            <div className="text-center">{this.state.length}</div>
             <button
-              type="button"
+              type="submit"
               className="btn btn-info w-50 m-auto"
-              onClick={() => {
-                this.handleSubmit();
-              }}
+              onClick={this.handleSubmit}
             >
               Submit
             </button>
@@ -118,7 +111,11 @@ class Popup extends Component {
   }
 }
 
+const mapStateToProps = ({ route }) => {
+  return { route };
+};
+
 export default connect(
-  null,
-  { closePopUpWindow, setRoutes }
+  mapStateToProps,
+  { closePopUpWindow, setRoutes, addRoute }
 )(Popup);
