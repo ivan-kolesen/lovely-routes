@@ -8,13 +8,12 @@ import { routes } from "./config";
 
 import { store } from "../index";
 
-import { setRoutes } from "../actions/index";
+import { setRoutes, fetchRoutes } from "../actions/index";
 
 class App extends Component {
-  componentWillMount = () => {
-    const { setRoutes } = this.props;
-    setRoutes(routes);
-  };
+  componentWillMount() {
+    this.props.fetchRoutes();
+  }
 
   componentDidMount = () => {
     this.unsubscribe = store.subscribe(() => this.forceUpdate());
@@ -42,5 +41,5 @@ class App extends Component {
 
 export default connect(
   null,
-  { setRoutes }
+  { setRoutes, fetchRoutes }
 )(App);

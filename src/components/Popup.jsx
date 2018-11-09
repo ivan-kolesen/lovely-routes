@@ -7,6 +7,7 @@ import { setRoutes, addRoute } from "../actions/index";
 class Popup extends Component {
   state = {
     isFavourite: false,
+    isSelected: false,
     title: "",
     shortDesc: "",
     fullDesc: "",
