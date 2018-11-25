@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { closePopUpWindow } from "../actions/index";
-import { addRoute } from "../actions/index";
+import { closePopUpWindow, addRoute } from "../actions/index";
 
 class Popup extends Component {
   state = {

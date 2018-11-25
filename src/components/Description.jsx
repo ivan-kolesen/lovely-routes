@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Map } from "./Map";
 
 import { removeRoute, likeRoute } from "../actions/index";
 import { connect } from "react-redux";
@@ -46,7 +47,9 @@ class Description extends Component {
         <div className="p-2 flex-grow-1" style={{ overflow: "scroll" }}>
           {route.fullDesc}
         </div>
-        <div className="h-50 bg-warning" />
+        <div className="h-50 bg-warning">
+          <Map isMarkerShown />
+        </div>
         <div className="">
           <button
             className={this.getClassName()}
